@@ -1,0 +1,69 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Next.js
+.next/
+out/
+build/
+.next/cache/
+
+# Production
+dist/
+
+# Environment
+.env
+.env.*.local
+.env.local
+
+# TypeScript
+*.tsbuildinfo
+
+# Logs
+logs
+*.log
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Testing / Playwright / Vitest
+coverage/
+.vitest/
+test-results/
+playwright-report/
+.playwright/
+
+# Build tools cache
+.eslintcache
+.turbo/
+.turbopack/
+
+# Caches
+.cache/
+.parcel-cache/
+.pnp.*
+.yarn/*
+!.yarn/plugins
+!.yarn/releases
+
+# Editors & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.iml
+
+# Misc
+.sass-cache/
+.vercel/
+*.pem
+*.key
+.env.test.local
+
+# Keep next-env.d.ts (do NOT ignore)
+# Keep lockfiles (package-lock.json / yarn.lock) for reproducible installs

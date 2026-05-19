@@ -1,0 +1,27 @@
+eversion: '3.8'
+
+services:
+  app:
+    build: .
+    image: pokeia:latest
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_BASE_URL=http://localhost:3000
+    restart: unless-stopped
+
+  # Optional service for development (volume mounts for hot reload)
+  dev:
+    build: .
+    image: pokeia-dev:latest
+    command: npm run dev
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=development
+      - NEXT_PUBLIC_BASE_URL=http://localhost:3000
+    volumes:
+      - ./:/app:cached
+    stdin_open: true
+    tty: true
