@@ -1,5 +1,3 @@
-eversion: '3.8'
-
 services:
   app:
     build: .
@@ -11,9 +9,10 @@ services:
       - NEXT_PUBLIC_BASE_URL=http://localhost:3000
     restart: unless-stopped
 
-  # Optional service for development (volume mounts for hot reload)
   dev:
-    build: .
+    build:
+      context: .
+      target: builder
     image: pokeia-dev:latest
     command: npm run dev
     ports:
@@ -23,5 +22,7 @@ services:
       - NEXT_PUBLIC_BASE_URL=http://localhost:3000
     volumes:
       - ./:/app:cached
+      - /app/node_modules
+      - /app/.next
     stdin_open: true
     tty: true

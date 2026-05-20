@@ -10,12 +10,18 @@ export default function PokemonList() {
   const [query, setQuery] = useState('');
   const filtered = list.filter((p) => p.name.includes(query.toLowerCase()));
 
-  if (status === 'loading') return <div>Carregando...</div>;
+  if (status === 'loading') {
+    return (
+      <div className="rounded-lg border-4 border-slate-900 bg-emerald-200 p-6 text-center font-mono text-lg font-black uppercase text-slate-950 shadow-inner">
+        Carregando...
+      </div>
+    );
+  }
 
   return (
-    <div>
+    <div className="space-y-5">
       <PokemonSearch value={query} onChange={setQuery} />
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
         {filtered.map((p) => (
           <PokemonCard key={p.id} p={p} />
         ))}

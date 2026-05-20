@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    min-height: 100%;
+  }
+
+  body {
+    min-height: 100vh;
+    margin: 0;
+    background:
+      radial-gradient(circle at 18% 12%, rgba(56, 189, 248, 0.35), transparent 18rem),
+      radial-gradient(circle at 80% 6%, rgba(250, 204, 21, 0.28), transparent 15rem),
+      linear-gradient(135deg, #111827 0%, #1f2937 48%, #0f172a 100%);
+    color: #0f172a;
+  }
+
+  img {
+    max-width: 100%;
+  }
+}
+
+@layer components {
+  .pokedex-page {
+    @apply min-h-screen px-4 py-6 sm:px-6 lg:px-8;
+  }
+
+  .pokedex-shell {
+    @apply mx-auto max-w-6xl rounded-[28px] border-[10px] border-red-950 bg-red-700 p-4 shadow-2xl shadow-red-950/40 sm:p-6;
+  }
+
+  .pokedex-topbar {
+    @apply mb-5 flex items-center gap-3 border-b-4 border-red-950 pb-4;
+  }
+
+  .pokedex-camera {
+    @apply h-16 w-16 rounded-full border-4 border-white bg-sky-300;
+    box-shadow: inset 0 0 0 8px #38bdf8, 0 0 18px rgba(125, 211, 252, 0.9);
+  }
+
+  .pokedex-status-lights {
+    @apply flex items-center gap-3;
+  }
+
+  .pokedex-status-light {
+    @apply h-5 w-5 rounded-full border-2 border-red-950;
+  }
+
+  .pokedex-status-light--red {
+    @apply bg-red-400;
+  }
+
+  .pokedex-status-light--yellow {
+    @apply bg-yellow-300;
+  }
+
+  .pokedex-status-light--green {
+    @apply bg-lime-400;
+  }
+
+  .pokedex-screen {
+    @apply rounded-xl border-4 border-red-950 bg-slate-100 p-4 shadow-inner sm:p-6;
+  }
+
+  .pokedex-heading {
+    @apply mb-5 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between;
+  }
+
+  .pokedex-kicker {
+    @apply text-xs font-black uppercase tracking-[0.28em] text-red-700;
+  }
+
+  .pokedex-title {
+    @apply text-3xl font-black uppercase text-slate-950 sm:text-4xl;
+  }
+
+  .pokedex-speaker {
+    @apply h-3 w-24 rounded-full bg-slate-950;
+  }
+}
