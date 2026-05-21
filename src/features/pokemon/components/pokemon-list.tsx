@@ -1,21 +1,12 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { usePokemonList } from '../models/hooks/use-pokemon-list';
 import PokemonCard from './pokemon-card';
 import PokemonSearch from './pokemon-search';
 
 export default function PokemonList() {
-  const { list, status } = usePokemonList();
-  const [query, setQuery] = useState('');
-  const normalizedQuery = query.trim().toLowerCase();
-  const isIdSearch = /^#?\d+$/.test(normalizedQuery);
-  const searchedId = Number(normalizedQuery.replace('#', ''));
-  const filtered = list.filter((p) => {
-    if (!normalizedQuery) return true;
-    if (isIdSearch) return p.id === searchedId;
-    return p.name.includes(normalizedQuery);
-  });
+  const { filtered, query, setQuery, status } = usePokemonList();
 
   if (status === 'loading') {
     return (
