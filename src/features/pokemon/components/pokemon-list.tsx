@@ -8,7 +8,14 @@ import PokemonSearch from './pokemon-search';
 export default function PokemonList() {
   const { list, status } = usePokemonList();
   const [query, setQuery] = useState('');
-  const filtered = list.filter((p) => p.name.includes(query.toLowerCase()));
+  const normalizedQuery = query.trim().toLowerCase();
+  const isIdSearch = /^#?\d+$/.test(normalizedQuery);
+  const searchedId = Number(normalizedQuery.replace('#', ''));
+  const filtered = list.filter((p) => {
+    if (!normalizedQuery) return true;
+    if (isIdSearch) return p.id === searchedId;
+    return p.name.includes(normalizedQuery);
+  });
 
   if (status === 'loading') {
     return (
