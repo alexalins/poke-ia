@@ -4,6 +4,10 @@ Pokedex web feita com Next.js, TypeScript, Redux Toolkit e Tailwind CSS. O app l
 
 ![Preview do PokeIA](public/app-preview.png)
 
+## Preview dos detalhes
+
+![Tela de detalhes do Charizard](public/charizard-detail-preview.png)
+
 ## Tecnologias
 
 - Next.js 13
@@ -12,7 +16,7 @@ Pokedex web feita com Next.js, TypeScript, Redux Toolkit e Tailwind CSS. O app l
 - Redux Toolkit
 - Tailwind CSS
 - Docker
-- Vitest e Playwright
+- Jest e Playwright
 
 ## Como rodar com Docker
 

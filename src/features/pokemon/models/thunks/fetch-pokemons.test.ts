@@ -1,32 +1,15 @@
-import { api } from '../../../../services/api';
+import { getPokemonList } from '../../../../services/pokemon-service';
 import { fetchPokemons } from './fetch-pokemons';
 
-jest.mock('../../../../services/api', () => ({
-  api: {
-    get: jest.fn(),
-  },
+jest.mock('../../../../services/pokemon-service', () => ({
+  getPokemonList: jest.fn(),
 }));
 
-const mockedApi = jest.mocked(api);
+const mockedGetPokemonList = jest.mocked(getPokemonList);
 
 describe('fetchPokemons', () => {
-  it('fetches the first 151 pokemons and normalizes the response', async () => {
-    mockedApi.get.mockResolvedValueOnce({
-      data: {
-        results: [
-          { name: 'bulbasaur', url: 'https://pokeapi.co/api/v2/pokemon/1/' },
-          { name: 'pikachu', url: 'https://pokeapi.co/api/v2/pokemon/25/' },
-        ],
-      },
-    });
-
-    const dispatch = jest.fn();
-    const getState = jest.fn();
-    const action = await fetchPokemons()(dispatch, getState, undefined);
-
-    expect(mockedApi.get).toHaveBeenCalledWith('/pokemon?limit=151');
-    expect(action.type).toBe(fetchPokemons.fulfilled.type);
-    expect(action.payload).toEqual([
+  it('fetches the pokemon list from the pokemon service', async () => {
+    const pokemons = [
       {
         id: 1,
         name: 'bulbasaur',
@@ -37,6 +20,16 @@ describe('fetchPokemons', () => {
         name: 'pikachu',
         image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png',
       },
-    ]);
+    ];
+
+    mockedGetPokemonList.mockResolvedValueOnce(pokemons);
+
+    const dispatch = jest.fn();
+    const getState = jest.fn();
+    const action = await fetchPokemons()(dispatch, getState, undefined);
+
+    expect(mockedGetPokemonList).toHaveBeenCalledTimes(1);
+    expect(action.type).toBe(fetchPokemons.fulfilled.type);
+    expect(action.payload).toEqual(pokemons);
   });
 });

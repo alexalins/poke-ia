@@ -8,7 +8,17 @@ const statusLights = [
   'pokedex-status-light pokedex-status-light--green',
 ];
 
-export default function PokedexShell({ children }: { children: React.ReactNode }) {
+type PokedexShellProps = {
+  children: React.ReactNode;
+  title?: string;
+  kicker?: string;
+};
+
+export default function PokedexShell({
+  children,
+  title = 'Pokémons',
+  kicker = 'Pokedex digital',
+}: PokedexShellProps) {
   return (
     <section className="pokedex-shell" aria-labelledby="pokedex-title">
       <header className="pokedex-topbar">
@@ -23,9 +33,9 @@ export default function PokedexShell({ children }: { children: React.ReactNode }
       <div className="pokedex-screen">
         <div className="pokedex-heading">
           <div>
-            <p className="pokedex-kicker">Pokedex digital</p>
+            <p className="pokedex-kicker">{kicker}</p>
             <h1 id="pokedex-title" className="pokedex-title">
-              Pokémons
+              {title}
             </h1>
           </div>
           <span className="pokedex-speaker" aria-hidden="true" />

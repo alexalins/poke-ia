@@ -1,5 +1,10 @@
 import './globals.css';
 
+export const metadata = {
+  title: 'PokeIA',
+  description: 'Pokedex digital',
+};
+
 export default function RootLayout({
   children,
 }: {
