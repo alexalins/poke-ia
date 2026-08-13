@@ -1,14 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { fetchPokemonDetail } from './thunks/fetch-pokemon-detail';
 import { fetchPokemons } from './thunks/fetch-pokemons';
-import type { Pokemon } from '../types';
+import type { Pokemon, PokemonDetail } from '../types';
 
 type State = {
   entities: Pokemon[];
+  selected: PokemonDetail | null;
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
+  detailStatus: 'idle' | 'loading' | 'succeeded' | 'failed';
   error?: string | null;
+  detailError?: string | null;
 };
 
-const initialState: State = { entities: [], status: 'idle', error: null };
+const initialState: State = {
+  entities: [],
+  selected: null,
+  status: 'idle',
+  detailStatus: 'idle',
+  error: null,
+  detailError: null,
+};
 
 const slice = createSlice({
   name: 'pokemon',
@@ -26,6 +37,18 @@ const slice = createSlice({
     builder.addCase(fetchPokemons.rejected, (state, action) => {
       state.status = 'failed';
       state.error = action.error.message ?? null;
+    });
+    builder.addCase(fetchPokemonDetail.pending, (state) => {
+      state.detailStatus = 'loading';
+      state.detailError = null;
+    });
+    builder.addCase(fetchPokemonDetail.fulfilled, (state, action) => {
+      state.detailStatus = 'succeeded';
+      state.selected = action.payload;
+    });
+    builder.addCase(fetchPokemonDetail.rejected, (state, action) => {
+      state.detailStatus = 'failed';
+      state.detailError = action.error.message ?? null;
     });
   },
 });

@@ -9,7 +9,7 @@ export default function Page() {
   return (
     <ClientProvider>
       <main className="pokedex-page">
-        <PokedexShell>
+        <PokedexShell title="Pokémons" kicker="Pokedex digital">
           <PokemonList />
         </PokedexShell>
       </main>

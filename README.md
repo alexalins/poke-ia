@@ -12,7 +12,7 @@ Pokedex web feita com Next.js, TypeScript, Redux Toolkit e Tailwind CSS. O app l
 - Redux Toolkit
 - Tailwind CSS
 - Docker
-- Vitest e Playwright
+- Jest e Playwright
 
 ## Como rodar com Docker
 
